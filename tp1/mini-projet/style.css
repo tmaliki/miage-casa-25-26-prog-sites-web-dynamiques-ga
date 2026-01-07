@@ -26,6 +26,15 @@ input, textarea, button {
     border-radius: 5px; /* coins arrondis : arrondir les bords */
 }
 
+.btn {
+    cursor: pointer;
+}
+
+.btn:hover {
+    font-weight: bold;
+    background-color: #b3b3b3;
+}
+
 .error {
     color: red;
 }

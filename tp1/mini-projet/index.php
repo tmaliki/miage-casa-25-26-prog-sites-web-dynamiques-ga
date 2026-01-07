@@ -10,26 +10,55 @@
 
 <body>
     <?php
-        // 1. Initialisation
-        $error_msg = "";
-        $success_msg = "";
-        $fichier = "messages_data.txt";
-        $messages = "";
+    // 1. Initialisation des variables
+    $error_msg = "";
+    $success_msg = "";
+    $fichier = "messages_data.txt";
+    $messages = "";
 
-        // 2. Traitement du formulaire
-        if ($_SERVER["REQUEST_METHOD"] === "POST") {
-            // Récupération et nettoyage des données
-            $nom = trim($_POST['nom'] ?? "");
-            $message = trim($_POST['message'] ?? "");
+    // 2. Traitement du formulaire
+    if ($_SERVER["REQUEST_METHOD"] === "POST") {
+        // Récupération et nettoyage des données
+        $nom = trim($_POST['nom'] ?? "");
+        $message = trim($_POST['message'] ?? "");
 
-            // Vérification des champs
-            if (empty($nom) || empty($message)) {
-                $error_msg = "Tous les champs sont obligatoires.";
+        // Vérification des champs
+        if (empty($nom) || empty($message)) {
+            $error_msg = "Tous les champs sont obligatoires.";
+        } else {
+            /**
+             * Sécurisation des données contre XSS
+             * en utilisant htmlspecialchars()
+             */
+            $nom = htmlspecialchars($nom);
+            $message = htmlspecialchars($message);
+
+            // Date actuelle
+            $date = date("d/m/Y H:i");
+
+            // Format de message à enregistrer
+            $contenu = "Nom : $nom\n"; // Iniatialisation de la variable
+            $contenu .= "Message : $message\n"; // concaténation
+            $contenu .= "Date d'ajout : $date\n";
+            $contenu .= "-------------------------\n";
+
+            // Enregistrement dans le fichier
+            $handle = fopen($fichier, "a");
+            if ($handle) {
+                fwrite($handle, $contenu);
+                fclose($handle);
+                $success_msg = "Message enregistré avec succès.";
             } else {
+                $error_msg = "Erreur lors de l'ouverture du fichier";
             }
         }
+    }
 
-        // 3. Lecture des messages
+    // 3. Lecture des messages
+    if (file_exists($fichier)) {
+        // récupération du contenu des messages
+        $messages = file_get_contents($fichier);
+    }
     ?>
 
     <div class="container">
@@ -52,10 +81,16 @@
             <label for="message">Message du visiteur</label>
             <textarea name="message" rows="4" placeholder="Votre message"></textarea>
 
-            <button type="submit">Envoyer votre message</button>
+            <button type="submit" class="btn">Envoyer votre message</button>
         </form>
 
         <!-- Affichage des messages -->
+        <h2>Messages enregistrés</h2>
+        <?php if (!empty($messages)): ?>
+            <pre><?= $messages ?></pre>
+        <?php else: ?>
+            <p>Aucun message enregistré pour le moment</p>
+        <?php endif ?>
     </div>
 </body>
 
