@@ -1,0 +1,42 @@
+body { /* selecteur de balise ou d'élement */
+    font-family: Arial, Helvetica, sans-serif; /* police de caractères */
+    background: #f4f4f4;
+    padding: 20px;
+}
+
+.container { /* selecteur de classe */
+    background: white;
+    padding: 20px;
+    max-width: 600px;
+    margin: auto;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #aaa;
+}
+
+h1 {
+    text-align: center;
+}
+
+input, textarea, button {
+    width: 100%;
+    margin-bottom: 10px; /* espace externe vers le bas */
+    padding: 10px;  /* espace interne */
+    box-sizing: border-box; /* inclut padding dans with */
+    border: 1px solid #ccc; /* ajoute une bordure visible */
+    border-radius: 5px; /* coins arrondis : arrondir les bords */
+}
+
+.error {
+    color: red;
+}
+
+.success {
+    color: green;
+}
+
+pre {
+    background: #eee;
+    padding: 10px;
+    white-space: pre-wrap;
+    border-radius: 5px;
+}
