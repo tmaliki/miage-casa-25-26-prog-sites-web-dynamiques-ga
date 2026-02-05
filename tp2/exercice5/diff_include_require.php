@@ -16,9 +16,9 @@
         <li>Le script continue même si le fichier n'est pas trouvé</li>
     </ul>
     <?php
-    // Exemple :
-    include "header.php";
-    echo "<p>Contenu principal de la page.</p>";
+        // Exemple :
+        include "header.php";
+        echo "<p>Contenu principal de la page.</p>";
     ?>
     <p>Si <b>header.php</b> n'existe pas, PHP affiche une avertissement mais exécute le reste du code.</p>
 
@@ -28,9 +28,9 @@
         <li>Mais le fichier n'est inclus qu'une seule fois, mêlme s'il est appelé plusieurs fois.</li>
     </ul>
     <?php
-    // Exemple :
-    include_once "config.php";
-    include_once "header.php"; // sera ignoré
+        // Exemple :
+        include_once "config.php";
+        include_once "header.php"; // sera ignoré
     ?>
 
     <h3>3 - require</h3>
@@ -39,9 +39,9 @@
         <li>Si le fichier est absent cela entraine un arrêt immédiat du script</li>
     </ul>
     <?php
-    // Exemple :
-    require "database.php";
-    echo "<p>Connexion à la base de données réussie.</p>";
+        // Exemple :
+        require "database.php";
+        echo "<p>Connexion à la base de données réussie.</p>";
     ?>
     <p>Si <b>database.php</b> n'existe pas, le script ne s'exécute pas</p>
 
@@ -55,12 +55,12 @@
             </ul>
         </li>
         <li>Le fichier est obligatoire et n'est inclus qu'une seule fois</li>
-        <?php
-            // Exemple :
-            require_once "autoload.php";
-            echo "<p>Chargement des données importantes.</p>";
-        ?>
     </ul>
+    <?php
+        // Exemple :
+        require_once "autoload.php";
+        echo "<p>Chargement des données importantes.</p>";
+    ?>
     <p>Si <b>autoload.php</b> n'existe pas, le script ne s'exécute pas</p>
 </body>
 
