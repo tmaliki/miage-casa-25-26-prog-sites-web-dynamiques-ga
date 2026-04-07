@@ -9,17 +9,17 @@
 
 <body>
     <?php
-    // Inclure le fichier de connexion à la base
-    require_once 'config/database.php';
+        // Inclure le fichier de connexion à la base
+        require_once 'config/database.php';
 
-    // Requete pour récupérer tous les étudiants
-    $sql = "SELECT * FROM etudiants";
+        // Requete pour récupérer tous les étudiants
+        $sql = "SELECT * FROM etudiants";
 
-    // Exécution directe
-    $stmt = $pdo->query($sql);
+        // Exécution directe
+        $stmt = $pdo->query($sql);
 
-    // Récupération des résultats sous forme de tableau associatif
-    $etudiants = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        // Récupération des résultats sous forme de tableau associatif
+        $etudiants = $stmt->fetchAll(PDO::FETCH_ASSOC);
     ?>
 
     <h1>Liste des étudiants</h1>

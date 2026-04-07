@@ -29,7 +29,6 @@
 
             echo "Étudiant ajouté avec succès !";
         }
-        
     ?>
 
     <h1>Formulaire d'ajout d'un étudiant</h1>
